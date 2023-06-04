@@ -1,28 +1,39 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Footer from '../components/Footer';
 function Login() {
   return (
     <div className='fondo-blk'>
       <div className='formulario'>
-       <Form>
+        <div className='glass'>
+          <h4>Ingresa a tu Cuenta</h4>
+          <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Correo</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />        
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Email"
+        className="mb-3"
+      >
+        <Form.Control type="email" placeholder="Correo"/>
+      </FloatingLabel>        
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Contraseña</Form.Label>
+      <FloatingLabel controlId="floatingPassword" label="Contraseña">
         <Form.Control type="password" placeholder="Password" />
+      </FloatingLabel>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
-      <Button variant="outline-primary" type="submit">
+      <Button className='redondo' variant="outline-primary" type="submit">
         Ingresar
       </Button>
        </Form>
+        </div>       
      </div>
+     <Footer></Footer>
     </div>
     
     

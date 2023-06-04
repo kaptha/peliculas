@@ -1,5 +1,7 @@
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 function Address() {
@@ -9,12 +11,24 @@ function Address() {
   const handleShow = () => setShow(true);
   return (
     <div className='formulario'>
-      <Button variant="primary" onClick={handleShow}>Agregar Direccion</Button>
+      <div><Button variant="primary" onClick={handleShow}>Agregar Direccion</Button></div>      
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Direccion de Envio</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Formulario</Modal.Body>
+        <Modal.Body>
+          <Form>
+          <FloatingLabel  controlId="floatingInput" label="Direccion" className="mb-3">
+          <Form.Control type="text" placeholder="Direccion" />
+          </FloatingLabel>
+          <FloatingLabel  controlId="floatingInput" label="Codigo Postal" className="mb-3">
+          <Form.Control type="text" placeholder="Codigo Postal" />
+          </FloatingLabel>
+          <FloatingLabel  controlId="floatingInput" label="Ciudad" className="mb-3">
+          <Form.Control type="text" placeholder="Ciudad" />
+          </FloatingLabel>
+          </Form>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cerrar
@@ -24,7 +38,8 @@ function Address() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <Table striped bordered hover variant="dark">      
+    
+        <Table striped bordered hover variant="dark">      
       <thead>
         <tr>
           <th>#</th>
@@ -52,7 +67,9 @@ function Address() {
           <td>@twitter</td>
         </tr>
       </tbody>
-    </Table>
+        </Table>
+    
+      
     </div>
     
   );

@@ -1,28 +1,51 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Footer from '../components/Footer';
 function Register() {
   return (
-    <Form>
+    <div className='fondo-blk'>
+      <div className='formulario'>
+        <div className='glass'>
+        <h4>Crea tu Cuenta</h4>
+        <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Nombre"
+        className="mb-3"
+      >
+        <Form.Control type="text" placeholder="Nombre"/>
+      </FloatingLabel>  
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Correo"
+        className="mb-3"
+      >
+        <Form.Control type="email" placeholder="Correo"/>
+      </FloatingLabel>  
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
+      <FloatingLabel controlId="floatingPassword" label="Contraseña">
         <Form.Control type="password" placeholder="Password" />
+      </FloatingLabel>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Submit
+        Crear
       </Button>
     </Form>
+        </div>
+
+      </div>
+      <Footer></Footer>
+    </div>
+    
   );
 }
 
