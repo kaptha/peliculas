@@ -3,11 +3,11 @@ import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import pelis from '../images/pels.jpg'
+
 import mex from '../images/mexico_2000.jpg'
 export default function Peliculas() {
   return (
-    <div style={{ backgroundImage: `url(${pelis})` }} className='peliculas'>
+    <div className='peliculas'>
       <div className='titulo-peliculas'>
         <h5>
         Lo mejor en VHS y BETA <Badge bg="secondary">Nuevas</Badge>

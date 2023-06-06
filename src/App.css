@@ -16,8 +16,10 @@
   color: #f8f8f8;
 }
 .peliculas{
-  height: 600px;
+  height: 800px;
   width: auto;
+  background-image: url(./images/pelis.jpg);
+  background-size: cover;
 }
 .titulo-peliculas{
   padding-top: 20px;
@@ -101,6 +103,34 @@
 }
 h5{
   color: beige;
+}
+.pelicula{
+  width: 100%;
+  height: 1000px;
+  padding-top: 100px;
+  background-image: url(./images/peli.png);
+  background-size: cover;
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+}
+.glass-peli{
+  width: 900px;
+  height: 700px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 32px;
+}
+.glass-peli p{
+  color: aliceblue;
+  padding-top: 20px;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
