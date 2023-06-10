@@ -2,7 +2,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Footer from '../components/Footer';
+
+import { useNavigate } from 'react-router-dom';
 function Login() {
+  const navigate = useNavigate();
   return (
     <div className='fondo-blk'>
       <div className='formulario'>
@@ -25,8 +28,8 @@ function Login() {
       </FloatingLabel>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
+        <h6>No tienes una cuenta?</h6><Button className='redondo' variant="outline-danger" onClick={()=>navigate("/Register")}>Registrarse</Button>
+      </Form.Group>      
       <Button className='redondo' variant="outline-primary" type="submit">
         Ingresar
       </Button>

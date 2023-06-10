@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Toast from 'react-bootstrap/Toast';
 import Navbar from 'react-bootstrap/Navbar';
 import { Outlet, Link } from 'react-router-dom';
 import logouno from '../images/bbv.png';
 import cart from '../images/carrito.png';
 
 function NavBar() {
-  const [showA, setShowA] = useState(true);
-  const toggleShowA = () => setShowA(!showA);
+  
   return (
     <>
     <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -25,20 +23,9 @@ function NavBar() {
           </Nav>
           <Nav>
             <Nav.Link as={Link} to="/Login">Iniciar Sesion</Nav.Link>
-            <Nav.Link onClick={toggleShowA}>
+            <Nav.Link as={Link} to="/CheckOut">
             <img className="cart-logo" src={cart}></img>  
-            <Toast show={showA} onClose={toggleShowA}>
-          <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
-            <strong className="me-auto">Carrito</strong>
-            <small>11 mins ago</small>
-          </Toast.Header>
-          <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
-        </Toast>          
+                   
             </Nav.Link>
             
           </Nav>

@@ -1,30 +1,53 @@
 //import Button from 'react-bootstrap/Button';
-//import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
+import Form from 'react-bootstrap/Form';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-//import Container from 'react-bootstrap/Container';
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
+import Footer from '../components/Footer';
 
 function CheckOut() {
+  const [key, setKey] = useState('home');
   return (
-    <div className='formulario-pago'>
+    <>
+    <div className='formulario'>
+      <div className='glass-pago'>
       <Tabs
-    defaultActiveKey="Paso 1"
-    id="uncontrolled-tab-example"
-    className="mb-3"
+      id="controlled-tab-example"
+      activeKey={key}
+      onSelect={(k) => setKey(k)}
+      className="mb-3"
     >
-    <Tab eventKey="uno" title="Paso 1">
-    <h4>Cliente</h4>
-    </Tab>
-    <Tab eventKey="dos" title="Paso 2">
-    <h4>Direccion de Envio</h4>
-    </Tab>
-    <Tab eventKey="contact" title="Paso 3">
-    <h4>Pago</h4>
-    </Tab>
+      <Tab eventKey="home" title="Direccion">
+      <h4>Direccion de Envio</h4>
+      <Form.Select aria-label="Default select example">
+      <option>Selecciona una direccion</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </Form.Select>
+      </Tab>
+      <Tab eventKey="profile" title="Cliente">
+        <h4>Datos Cliente</h4>
+        <Form.Control
+        type="text"
+        placeholder="Nombre"
+        aria-label="Disabled input example"
+        disabled
+        readOnly
+      />
+      </Tab>
+      <Tab eventKey="contact" title="Pago">
+        <h4>Confirmacion del Producto</h4>
+      </Tab>
     </Tabs>
+    
+        
+      </div>
+     
     </div>
+    <Footer></Footer>
+    </>
+    
     
     
   );

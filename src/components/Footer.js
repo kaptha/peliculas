@@ -6,35 +6,37 @@ import logouno from '../images/bbv.png';
 
 export default function Footer() {
   return (
-    <div className='footer'>
-      <Container>
-      <Row>
-        <Col>
-        <img className="logo" src={logouno}></img>
-        <ul>
-          <img className='mapa'></img>
-          <li>TERRACE VIEW BLVD</li>
-          <li>OREGON, IL - Illinois</li>
-        </ul>
-        </Col>
-        <Col>
-        <h5>Links</h5>
-        <ul>
+    <div className='footer'>     
+      <footer style={{ margin: '15px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ flex: '0 0 auto' }}>
+        <img className="logo" src={logouno}></img>       
+          <p>TERRACE VIEW BLVD</p>
+          <p>OREGON, IL - Illinois</p>
+        </div>
+        <div style={{ flex: '1 1 auto', margin: '0 15px' }}>
+          <ul style={{ listStyle: 'none', padding: '0' }}>
           <li>Peliculas Europeas</li>
           <li>Peliculas America</li>
           <li>Peliculas Asiaticas</li>
-        </ul>
-        </Col>
-        <Col>
-        <h5>Siguenos</h5>
-        <ul>
-          <li><img className='face'></img></li>
-          <li><img className='ins'></img></li>
-          <li><img className='tw'></img></li>
-        </ul>
-        </Col>
-      </Row>      
-    </Container>
+          </ul>
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <ul style={{ listStyle: 'none', padding: '0', display: 'flex', justifyContent: 'flex-end' }}>
+            <li style={{ margin: '0 5px' }}>
+            <img className='face'></img>
+            </li>
+            <li style={{ margin: '0 5px' }}>
+            <img className='ins'></img>
+            </li>
+            <li style={{ margin: '0 5px' }}>
+            <img className='tw'></img>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>    
+       
     </div>
   )
 }

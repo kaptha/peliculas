@@ -2,7 +2,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 function Register() {
+  const navigate = useNavigate();
   return (
     <div className='fondo-blk'>
       <div className='formulario'>
@@ -33,9 +35,9 @@ function Register() {
         <Form.Control type="password" placeholder="Password" />
       </FloatingLabel>
       </Form.Group>
-      
+      <Button onClick={()=>navigate(-1)} className='redondo' >Ingresar</Button>
       <Button className='redondo' variant="outline-primary" type="submit">
-        Crear
+        Crear cuenta
       </Button>
     </Form>
         </div>

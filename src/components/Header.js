@@ -4,7 +4,8 @@ import img2 from '../images/p2.jpg'
 import img3 from '../images/p3.jpg'
 function Header() {
     return (
-      <Carousel>
+      <div>
+          <Carousel>
         <Carousel.Item interval={1000}>
           <img
             className="d-block w-100"
@@ -41,6 +42,8 @@ function Header() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      </div>
+      
     );
   }
   
