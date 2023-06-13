@@ -19,7 +19,8 @@ function NavBar() {
             <Nav.Link >Features</Nav.Link>
             <Nav.Link as={Link} to="/Address">Direcciones</Nav.Link>
             <Nav.Link as={Link} to="/Register">Reg</Nav.Link>
-            <Nav.Link as={Link} to="/Pelicula">Peli</Nav.Link>           
+            <Nav.Link as={Link} to="/Pelicula">Peli</Nav.Link>
+            <Nav.Link as={Link} to="/Profile">Perfil</Nav.Link>           
           </Nav>
           <Nav>
             <Nav.Link as={Link} to="/Login">Iniciar Sesion</Nav.Link>

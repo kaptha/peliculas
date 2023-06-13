@@ -27,13 +27,15 @@ export default function Peliculas() {
           <Col><Button className='redondo' variant="outline-primary">Oceania</Button></Col>         
           
         </Row>
+        <Row>
+          <Carta></Carta>
+        </Row>       
+          
       </Container>
-      
-      <Container>
-        <Carta></Carta>
-      </Container>
-      
-     
+    
+          
+         
+          
     </div>
   )
 }

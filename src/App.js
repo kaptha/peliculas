@@ -7,19 +7,22 @@ import CheckOut from './pages/CheckOut';
 import Address from './pages/Address';
 import Register from './pages/Register';
 import Pelicula from './pages/Pelicula';
+import Profile from "./pages/Profile";
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <NavBar></NavBar>
         <Routes>
-           <Route path='/' element={ <NavBar /> }>
+           
            <Route path='/' element={ <Inicio/> }/>                               
-           <Route path='Login' element={ <Login/> }/>
-           <Route path='CheckOut' element={ <CheckOut/> }/>
-           <Route path='Address' element={ <Address/> }/>
-           <Route path='Register' element={ <Register/> }/>
-           <Route path='Pelicula' element={ <Pelicula/> }/>
-          </Route>
+           <Route path='/Login' element={ <Login/> }/>
+           <Route path='/CheckOut' element={ <CheckOut/> }/>
+           <Route path='/Address' element={ <Address/> }/>
+           <Route path='/Register' element={ <Register/> }/>
+           <Route path='/Pelicula/:id' element={ <Pelicula/> }/>
+           <Route path='/Profile' element={ <Profile/> }/>
+          
         </Routes>
       </BrowserRouter>
      

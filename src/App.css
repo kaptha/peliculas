@@ -22,12 +22,14 @@
   background-size: cover;
 }
 .cartas{
+  width: 100px;
+  height: 500px;
   padding-top: 20px;
   border-radius: 10px;
 }
 .glass-carta{
   width: 250px;
-  height: 300px;
+  height: 500px;
   padding-top: 70px;
   padding-left: 30px;
   padding-right: 30px;
