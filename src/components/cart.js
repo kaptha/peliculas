@@ -9,7 +9,7 @@ export default function cart() {
   }, []);
   const fetchCartItems = async () => {
     try {
-      const response = await axios.get('/api/cart'); // Ruta para obtener los datos del carrito desde el servidor
+      const response = await axios.get('http://localhost:5500/carrito/:usuario');
       setCartItems(response.data);
     } catch (error) {
       console.error('Error al obtener los datos del carrito:', error);
@@ -17,7 +17,7 @@ export default function cart() {
   };
   const removeFromCart = async (itemId) => {
     try {
-      await axios.delete(`/api/cart/${itemId}`); // Ruta para eliminar un elemento del carrito
+      await axios.delete(`http://localhost:5500/carrito/${itemId}`); // Ruta para eliminar un elemento del carrito
       fetchCartItems(); // Actualizar los datos del carrito después de eliminar un elemento
     } catch (error) {
       console.error('Error al eliminar el elemento del carrito:', error);
@@ -37,7 +37,7 @@ export default function cart() {
           <Col>Total</Col>
           <Col></Col>
           <Col>$154</Col>
-          <Col><Button className="redondo" variant="outline-success" as={Link} to="/CheckOut">Pagar</Button></Col>
+          <Col><Button className="redondo" variant="success" as={Link} to="/CheckOut">Pagar</Button></Col>
         </Row>
        </Container>
     ))}

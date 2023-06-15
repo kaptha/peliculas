@@ -1,5 +1,6 @@
 //import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -7,6 +8,18 @@ import Footer from '../components/Footer';
 
 function CheckOut() {
   const [key, setKey] = useState('home');
+  const [address, setAddress] = useState([]);
+  useEffect(() => {
+    fetchAddress();
+  }, []);
+  const fetchAddress = async () => {
+    try {
+      const response = await axios.get('http://localhost:5500//direccions/:id');
+      setAddress(response.data);
+    } catch (error) {
+      console.error('Error al obtener las direcciones:', error);
+    }
+  };
   return (
     <>
     <div className='formulario'>
@@ -21,9 +34,11 @@ function CheckOut() {
       <h4>Direccion de Envio</h4>
       <Form.Select aria-label="Default select example">
       <option>Selecciona una direccion</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+      {address.map((addre) => (
+          <option key={addre.id} value={addre.id}>
+            {addre.direccion}
+          </option>
+        ))}
     </Form.Select>
       </Tab>
       <Tab eventKey="profile" title="Cliente">

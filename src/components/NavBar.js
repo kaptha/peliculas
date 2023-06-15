@@ -47,9 +47,9 @@ function NavBar() {
     <section>
        <Outlet></Outlet>
     </section>
-    <Offcanvas show={show} onHide={handleClose}>
+    <Offcanvas className='canva' show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Carrito de Compra</Offcanvas.Title>
+          <Offcanvas.Title><h6>Carrito de Compra</h6></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
          <Container>
@@ -60,9 +60,9 @@ function NavBar() {
             <Col><a href="#"><img src={el}></img></a></Col>
           </Row>
           <Row className='espacio'>
-            <Col>Total</Col>
+            <Col><h6>Total</h6></Col>
             <Col></Col>
-            <Col>$154</Col>
+            <Col><h6>$154</h6></Col>
             <Col><Button className="redondo" variant="outline-success" as={Link} to="/CheckOut">Pagar</Button></Col>
           </Row>
          </Container>
