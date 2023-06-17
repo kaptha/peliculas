@@ -20,14 +20,12 @@ export default function Carta() {
     }
   };
   return (
-    <div>
-      
-          
-        
-        {pelis.map((peli) => (
+    
+    <div className='cartas'>
+      {pelis.map((peli) => (
          
               
-           <div className='cartas'>
+           
                 <Card className='glass-carta' key={peli._id}>
           <Card.Img variant="top" src={peli.foto} />
           <Card.Body>
@@ -39,13 +37,17 @@ export default function Carta() {
             </Link>
           </Card.Body>
                 </Card>
-            </div>                
+                            
        
         
         ))}
+      </div>
+          
+        
+        
              
         
                     
-    </div>
+
   )
 }

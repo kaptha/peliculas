@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import YouTube, { YouTubeProps } from 'react-youtube';
 //import imagen from '../images/mexico_2000.jpg';
 import Footer from '../components/Footer';
 import axios from 'axios';
@@ -29,6 +30,32 @@ export default function Pelicula(_id) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  ////Youtube
+  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
+  const opts: YouTubeProps['opts'] = {
+    height: '450',
+    width: '450',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+  const Product = ({ productId, name, price }) => {
+    const [quantity, setQuantity] = useState(1);
+  
+    const addToCart = async () => {
+      try {
+        const response = await axios.post('/api/carrito', { productId, quantity });
+        console.log(response.data);
+        // Aquí puedes manejar la respuesta del servidor (por ejemplo, mostrar un mensaje de éxito)
+      } catch (error) {
+        console.error('Error al agregar el producto al carrito:', error);
+        // Aquí puedes manejar el error (por ejemplo, mostrar un mensaje de error)
+      }
+    };
   return (
     <div>
        <div className='pelicula'>
@@ -45,32 +72,31 @@ export default function Pelicula(_id) {
                        <h5>{dato.director}</h5>
                        <h5>{dato.pais}</h5>
                        <Button className='redondo' variant="outline-warning" onClick={handleShow}>Ver trailer</Button>
-                       <Button className='redondo' variant="outline-danger">Regresar</Button>
-                       <Button className='redondo' variant="success">Agregar al carrito</Button>
+                       <Button className='redondo' variant="outline-danger" >Regresar</Button>
+                      
+                       <Button className='redondo' variant="success" onClick={addToCart}>Agregar al carrito</Button>
                      </Col>
                   </Row>
                     
                   <Row>
                       <Col>
-                      <h4>Sinopsis</h4>
+                      <h5>Sinopsis</h5>
                       <p>{dato.sinopsis}</p>
                       </Col>
                   </Row>
               </Container>
-              <Modal
+    <Modal
       show={show}
       onHide={handleClose}
       backdrop="static"
       keyboard={false}
+      
     >
       <Modal.Header closeButton>
-        <Modal.Title>Modal title</Modal.Title>
+        <Modal.Title>{dato.titulo}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-      <video controls>
-      <source src={dato.link} type="video/*" />
-      Tu navegador no soporta la reproducción de video.
-      </video>
+      <Modal.Body>      
+      <YouTube videoId={dato.link} opts={opts} onReady={onPlayerReady} />
       </Modal.Body>
       <Modal.Footer>
         <Button className='redondo' variant="outline-primary" onClick={handleClose}>
@@ -86,4 +112,5 @@ export default function Pelicula(_id) {
        <Footer></Footer>
     </div>
   )
+}
 }

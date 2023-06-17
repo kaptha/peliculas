@@ -7,6 +7,7 @@ export default function cart() {
   useEffect(() => {
     fetchCartItems();
   }, []);
+  ////Mostrar productos del carrito
   const fetchCartItems = async () => {
     try {
       const response = await axios.get('http://localhost:5500/carrito/:usuario');
@@ -15,6 +16,7 @@ export default function cart() {
       console.error('Error al obtener los datos del carrito:', error);
     }
   };
+  ////Eliminar producto
   const removeFromCart = async (itemId) => {
     try {
       await axios.delete(`http://localhost:5500/carrito/${itemId}`); // Ruta para eliminar un elemento del carrito

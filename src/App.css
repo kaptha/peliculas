@@ -19,14 +19,18 @@ h6{
   color: #f8f8f8;
 }
 .peliculas{
-  height: 800px;
-  width: auto;
+  height: 100%;
+  width: 100%;
   background-image: url(./images/pelis.jpg);
-  background-size: cover;
+  background-size: center;
+  background-repeat: no-repeat;
 }
 .cartas{
-  width: 100px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   padding-top: 20px;
   border-radius: 10px;
 }
@@ -41,8 +45,8 @@ h6{
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .glass-carta{
-  width: 250px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   padding-top: 70px;
   padding-left: 30px;
   padding-right: 30px;
@@ -114,6 +118,7 @@ h6{
   background-image: url('./images/login.jpg');
   background-size: cover; 
 }
+
 .glass-pago{
   width: 800px;
   height: 400px;

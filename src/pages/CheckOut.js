@@ -1,4 +1,5 @@
 //import Button from 'react-bootstrap/Button';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
@@ -53,6 +54,27 @@ function CheckOut() {
       </Tab>
       <Tab eventKey="contact" title="Pago">
         <h4>Confirmacion del Producto</h4>
+        <PayPalScriptProvider options={{ "client-id": "test" }}>
+            <PayPalButtons
+                createOrder={(data, actions) => {
+                    return actions.order.create({
+                        purchase_units: [
+                            {
+                                amount: {
+                                    value: "1.99",
+                                },
+                            },
+                        ],
+                    });
+                }}
+                onApprove={(data, actions) => {
+                    return actions.order.capture().then((details) => {
+                        const name = details.payer.name.given_name;
+                        alert(`Transaction completed by ${name}`);
+                    });
+                }}
+            />
+        </PayPalScriptProvider>
       </Tab>
     </Tabs>
     

@@ -10,6 +10,7 @@ import Carta from '../components/Carta';
 export default function Peliculas() {
 
   return (
+    <Container fluid>
     <div className='peliculas'>
       <div className='titulo-peliculas'>
         <h5>
@@ -19,7 +20,7 @@ export default function Peliculas() {
         Peliculas de todo el Mundo!!
         </h2>
       </div>
-      <Container fluid>
+     
         <Row>
           <Col><Button className='redondo' variant="outline-primary">Europa</Button></Col>
           <Col><Button className='redondo' variant="outline-primary">Americano</Button></Col>
@@ -27,15 +28,15 @@ export default function Peliculas() {
           <Col><Button className='redondo' variant="outline-primary">Oceania</Button></Col>         
           
         </Row>
-        <Row>
+       
           <Carta></Carta>
-        </Row>       
+            
           
-      </Container>
-    
+     
           
          
           
     </div>
+    </Container>
   )
 }
