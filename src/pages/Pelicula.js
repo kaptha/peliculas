@@ -43,19 +43,7 @@ export default function Pelicula(_id) {
       autoplay: 1,
     },
   };
-  const Product = ({ productId, name, price }) => {
-    const [quantity, setQuantity] = useState(1);
   
-    const addToCart = async () => {
-      try {
-        const response = await axios.post('/api/carrito', { productId, quantity });
-        console.log(response.data);
-        // Aquí puedes manejar la respuesta del servidor (por ejemplo, mostrar un mensaje de éxito)
-      } catch (error) {
-        console.error('Error al agregar el producto al carrito:', error);
-        // Aquí puedes manejar el error (por ejemplo, mostrar un mensaje de error)
-      }
-    };
   return (
     <div>
        <div className='pelicula'>
@@ -65,7 +53,7 @@ export default function Pelicula(_id) {
                   <Container>
                   <Row>
                     
-                     <Col><Image src={dato.foto}></Image></Col>
+                     <Col><Image className='foto-peli' src={dato.foto}></Image></Col>
                      <Col>
                        <h5>{dato.titulo}</h5>
                        <h5>{dato.Duracion}</h5>
@@ -74,7 +62,7 @@ export default function Pelicula(_id) {
                        <Button className='redondo' variant="outline-warning" onClick={handleShow}>Ver trailer</Button>
                        <Button className='redondo' variant="outline-danger" >Regresar</Button>
                       
-                       <Button className='redondo' variant="success" onClick={addToCart}>Agregar al carrito</Button>
+                       <Button className='redondo' variant="success" >Agregar al carrito</Button>
                      </Col>
                   </Row>
                     
@@ -113,4 +101,4 @@ export default function Pelicula(_id) {
     </div>
   )
 }
-}
+

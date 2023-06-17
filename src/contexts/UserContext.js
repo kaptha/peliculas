@@ -4,7 +4,7 @@ import React from "react";
 import { login } from "../services/userLogin";
 export const UserContext = createContext(null)
 
-export default  ({ children }) => {
+export const UserProvider =  ({ children }) => {
     const [isuser, setIsuser] = useState("");
     const [token, setToken] = useState("");
     const userLogin = async(evt, data) => {
