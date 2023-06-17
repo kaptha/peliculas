@@ -78,12 +78,12 @@ export default function Pelicula(_id) {
       onHide={handleClose}
       backdrop="static"
       keyboard={false}
-      
+            
     >
-      <Modal.Header closeButton>
+      <Modal.Header  closeButton>
         <Modal.Title>{dato.titulo}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>      
+      <Modal.Body >      
       <YouTube videoId={dato.link} opts={opts} onReady={onPlayerReady} />
       </Modal.Body>
       <Modal.Footer>

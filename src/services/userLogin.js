@@ -8,6 +8,7 @@ const login = async (email, password) => {
         password: password
     }
     )
+    localStorage.setItem("sesionlogin", "true");
     return response.data
     }catch(error){
         return null;

@@ -17,12 +17,13 @@ function Login() {
     setIsuser
   } = useContext(UserContext)
 
-const onSubmit= async()=>{
- 
+const onSubmit= async(e)=>{
+  e.preventDefault();
  if(email !== '' && password !== ''){
   const data = await login(email, password)
+  console.log(data);
   if(!data){
-
+    console.log("no entro");
   }
  }
     
@@ -52,7 +53,7 @@ const onSubmit= async()=>{
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <h6>No tienes una cuenta?</h6><Button className='redondo' variant="outline-danger" onClick={()=>navigate("/Register")}>Registrarse</Button>
       </Form.Group>      
-      <Button className='redondo' onClick={onSubmit} variant="outline-primary" type="submit">
+      <Button className='redondo'  variant="outline-primary" type="submit">
         Ingresar
       </Button>
        </Form>
