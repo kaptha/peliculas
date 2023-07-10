@@ -3,13 +3,19 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Swal from 'sweetalert2';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../contexts/UserContext';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import Modal from 'react-bootstrap/Modal';
-import el from '../images/eliminar.png';
-import ed from '../images/boton-editar.png';
+//import el from '../images/eliminar.png';
+//import ed from '../images/boton-editar.png';
+  
 function Address() {
+  const { user } = useContext(UserContext);
+  const { id } = user || {};
+  
+
   //Modal crear
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -18,6 +24,7 @@ function Address() {
   const [direccion, setDireccion] = useState('');
   const [ codigoPostal, setCodigoPostal ] = useState('');
   const [ ciudad, setCiudad ] = useState('');
+  /////Agregar direccion
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -41,8 +48,22 @@ function Address() {
       
     }
   };
-  ////
+  ////Obtener direccion del usuario 
+    const [direcciones, setDirecciones] = useState([]);  
+    useEffect(() => {
+      fetchData();
+    }, []);
   
+    const fetchData = async () => {
+      try {       
+        const url = "http://localhost:5500/direccions/"+id;        
+        const response = await axios.get(url);        
+        setDirecciones(response.data.address);
+       
+      } catch (error) {
+        console.error('Error al obtener las direcciones:', error);
+      }
+    };
   
 
   return (
@@ -63,16 +84,15 @@ function Address() {
              </tr>
            </thead>
            <tbody>
-             <tr>
-               <td>1</td>
-               <td>Mark</td>
-               <td>Otto</td>
-               <td>@mdo</td>
-               <td><a href="#"><img src={el}></img></a>
-                   <a href="#" ><img src={ed}></img></a>
-               </td>
-             </tr>
-             
+           {direcciones.map((direccion) => (
+            <tr key={direccion.id}>
+              <td>{direccion.id}</td>
+              <td>{direccion.direccion}</td>
+              <td>{direccion.codigoPostal}</td>
+              <td>{direccion.ciudad}</td>
+              <td>Acciones</td>
+            </tr>
+          ))}
             
            </tbody>
              </Table> 

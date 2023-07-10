@@ -13,12 +13,15 @@ export default function Peliculas() {
     <Container fluid>
     <div className='peliculas'>
       <div className='titulo-peliculas'>
-        <h5>
+        <center>
+          <h5>
         Lo mejor en VHS y BETA <Badge bg="secondary">Nuevas</Badge>
         </h5>
         <h2>
-        Peliculas de todo el Mundo!!
+        Cine de arte de todo el Mundo!!
         </h2>
+        </center>
+        
       </div>
      
         <Row>

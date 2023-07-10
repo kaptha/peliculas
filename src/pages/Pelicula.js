@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,13 +8,14 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import YouTube, { YouTubeProps } from 'react-youtube';
-//import imagen from '../images/mexico_2000.jpg';
 import Footer from '../components/Footer';
 import axios from 'axios';
+import { ShopContext } from '../contexts/ShopContext';
+
 export default function Pelicula(_id) {
   const { id } = useParams();
   const [dato, setDato] = useState(null);
-
+ 
   useEffect(() => {
     fetchData();
   }, []);
@@ -43,7 +44,8 @@ export default function Pelicula(_id) {
       autoplay: 1,
     },
   };
-  
+ ////Agregar al carrito
+  const { addProduct } = useContext(ShopContext);
   return (
     <div>
        <div className='pelicula'>
@@ -58,11 +60,12 @@ export default function Pelicula(_id) {
                        <h5>{dato.titulo}</h5>
                        <h5>{dato.Duracion}</h5>
                        <h5>{dato.director}</h5>
-                       <h5>{dato.pais}</h5>
+                       <h5>{dato.pais}, {dato.año}</h5>
+                       <h5>Precio: ${dato.precio}</h5>
                        <Button className='redondo' variant="outline-warning" onClick={handleShow}>Ver trailer</Button>
                        <Button className='redondo' variant="outline-danger" >Regresar</Button>
                       
-                       <Button className='redondo' variant="success" >Agregar al carrito</Button>
+                       <Button className='redondo' variant="success" onClick={() => addProduct(dato)} >Agregar al carrito</Button>
                      </Col>
                   </Row>
                     

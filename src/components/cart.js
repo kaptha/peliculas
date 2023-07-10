@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../contexts/UserContext';
+import { ShopContext } from '../contexts/ShopContext';
 import axios from 'axios';
 
 export default function cart() {
-    const [cartItems, setCartItems] = useState([]);
+  const { user } = useContext(UserContext);
+  const { id } = user || {};
+  const { cartShop } = useContext(ShopContext); 
+ 
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     fetchCartItems();
@@ -25,8 +31,10 @@ export default function cart() {
       console.error('Error al eliminar el elemento del carrito:', error);
     }
   };
+  console.log(cartShop, "aui carrito");
   return (
     <>
+    
     {cartItems.map((item) => (
         <Container>
         <Row className='espacio' key={item.id}>

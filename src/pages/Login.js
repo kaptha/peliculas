@@ -10,22 +10,26 @@ import { login } from '../services/userLogin';
 
 function Login() {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {
-    setToken,
-    setIsuser
-  } = useContext(UserContext)
 
-const onSubmit= async(e)=>{
-  e.preventDefault();
- if(email !== '' && password !== ''){
-  const data = await login(email, password)
-  console.log(data);
-  if(!data){
-    console.log("no entro");
-  }
- }
+  const { userLogin } = useContext(UserContext);
+  const [token, setToken] = useState('');
+
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (email !== '' && password !== '') {
+      const data = await login(email, password)
+      //console.log(data.user.id);  
+      setToken(data.user.id);    
+      
+      userLogin(data.user.id);
+      if (!data) {
+        console.log('no login');
+      }
+    }
     
 
 }

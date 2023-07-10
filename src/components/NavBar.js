@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -11,11 +11,17 @@ import { Outlet, Link } from 'react-router-dom';
 import logouno from '../images/bbv.png';
 import cart from '../images/carrito.png';
 import el from '../images/eliminar.png';
+import { UserContext } from '../contexts/UserContext';
+import { ShopContext } from '../contexts/ShopContext';
 function NavBar() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+  const { user } = useContext(UserContext);
+  const { id } = user || {};
+  //const { cartShop } = useContext(ShopContext); 
+  //console.log(cartShop, "aui carrito");
+  //console.log(id);
   return (
     <>
     <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -24,10 +30,15 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-                   
+          {id && (<>
+                <Nav.Link as={Link} to="/Address">Direcciones</Nav.Link>
+                <Nav.Link as={Link} to="/Profile">Perfil</Nav.Link>
+              </>)}
           </Nav>
           <Nav>
+            {!id && (<>
             <Nav.Link as={Link} to="/Login">Iniciar Sesion</Nav.Link>
+            </>)}            
             <Nav.Link onClick={handleShow}>
             <img className="cart-logo" src={cart}></img>  
                    
@@ -49,16 +60,19 @@ function NavBar() {
         </Offcanvas.Header>
         <Offcanvas.Body>
          <Container>
-          <Row className='espacio'>
-            <Col><Image src="holder.js/171x180" rounded /></Col>
-            <Col><h6>Pelicula</h6></Col>
-            <Col><h6>$154</h6></Col>
-            <Col><a href="#"><img src={el}></img></a></Col>
-          </Row>
+
+         
+         <Row className='espacio' >
+          <Col><Image  rounded /></Col>
+          <Col><h6>o</h6></Col>
+          <Col><h6>p</h6></Col>
+          <Col><a ><img ></img></a></Col>
+        </Row>
+       
           <Row className='espacio'>
             <Col><h6>Total</h6></Col>
             <Col></Col>
-            <Col><h6>$154</h6></Col>
+            <Col><h6>$155</h6></Col>
             <Col><Button className="redondo" variant="outline-success" as={Link} to="/CheckOut">Pagar</Button></Col>
           </Row>
          </Container>

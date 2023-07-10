@@ -1,6 +1,8 @@
 //import Button from 'react-bootstrap/Button';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../contexts/UserContext';
+import { ShopContext } from "../contexts/ShopContext";
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Tab from 'react-bootstrap/Tab';
@@ -8,6 +10,8 @@ import Tabs from 'react-bootstrap/Tabs';
 import Footer from '../components/Footer';
 
 function CheckOut() {
+  const { user } = useContext(UserContext);
+  const { id } = user || {};
   const [key, setKey] = useState('home');
   const [address, setAddress] = useState([]);
   useEffect(() => {

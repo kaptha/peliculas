@@ -1,22 +1,27 @@
-import { createContext } from "react";
-import { useState } from "react";
-import React from "react";
-import { login } from "../services/userLogin";
-export const UserContext = createContext(null)
+import { createContext, useState } from "react";
 
-export const UserProvider =  ({ children }) => {
-    const [isuser, setIsuser] = useState("");
-    const [token, setToken] = useState("");
-    const userLogin = async(evt, data) => {
-            evt.preventDefault()
-            const user = await login(data)
-            //if(!user) return setIsuser(null)
-            return setIsuser(user)
-    }
-    return(
-        <UserContext.Provider value={{isuser}}>
-         
-          {children}
-        </UserContext.Provider>
-    )
+const UserContext = createContext()
+
+const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+
+
+  const userLogin = (id) => {
+    setUser({ id });    
+  }
+
+
+  const userLogout = () => {
+    setUser(null);
+  };
+
+
+  return (
+    <UserContext.Provider value={{ user, userLogin, userLogout }}>
+      {children}
+    </UserContext.Provider>
+  )
 }
+
+export { UserContext, UserProvider };
+
