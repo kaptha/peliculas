@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,6 +14,7 @@ import axios from 'axios';
 import { ShopContext } from '../contexts/ShopContext';
 
 export default function Pelicula(_id) {
+  
   const { id } = useParams();
   const [dato, setDato] = useState(null);
  
@@ -46,6 +48,7 @@ export default function Pelicula(_id) {
   };
  ////Agregar al carrito
   const { addProduct } = useContext(ShopContext);
+  const navigate = useNavigate();
   return (
     <div>
        <div className='pelicula'>
@@ -63,7 +66,7 @@ export default function Pelicula(_id) {
                        <h5>{dato.pais}, {dato.año}</h5>
                        <h5>Precio: ${dato.precio}</h5>
                        <Button className='redondo' variant="outline-warning" onClick={handleShow}>Ver trailer</Button>
-                       <Button className='redondo' variant="outline-danger" >Regresar</Button>
+                       <Button onClick={()=>navigate(-1)} className='redondo' variant="outline-danger" >Regresar</Button>
                       
                        <Button className='redondo' variant="success" onClick={() => addProduct(dato)} >Agregar al carrito</Button>
                      </Col>

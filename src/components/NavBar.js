@@ -19,9 +19,11 @@ function NavBar() {
   const handleShow = () => setShow(true);
   const { user } = useContext(UserContext);
   const { id } = user || {};
-  //const { cartShop } = useContext(ShopContext); 
-  //console.log(cartShop, "aui carrito");
-  //console.log(id);
+  const { cartShop, getProductos, deleteItem } = useContext(ShopContext); 
+  console.log(getProductos(), "aui carrito");
+  const total = getProductos().reduce((sum, producto) => sum + producto.precio, 0);
+ 
+  //console.log("aqui total", total);
   return (
     <>
     <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -61,19 +63,25 @@ function NavBar() {
         <Offcanvas.Body>
          <Container>
 
-         
-         <Row className='espacio' >
+        {getProductos().map((carts, index)=>(
+          <Row className='espacio' >
           <Col><Image  rounded /></Col>
-          <Col><h6>o</h6></Col>
-          <Col><h6>p</h6></Col>
-          <Col><a ><img ></img></a></Col>
-        </Row>
+          <Col><h6>{carts.titulo}</h6></Col>
+          <Col><h6>${carts.precio}</h6></Col>
+          <Col><a onClick={() => deleteItem(index)}><img src={el}></img></a></Col>
+        </Row>        
+        ))}
+        
        
           <Row className='espacio'>
             <Col><h6>Total</h6></Col>
             <Col></Col>
-            <Col><h6>$155</h6></Col>
-            <Col><Button className="redondo" variant="outline-success" as={Link} to="/CheckOut">Pagar</Button></Col>
+            <Col><h6>${total}</h6></Col>
+            <Col>
+            {id && (<><Button className="redondo" variant="outline-success" as={Link} to="/CheckOut">Pagar</Button></>)}
+            
+            {!id && (<><Button className="redondo" variant="warning">Registro necesario para pagar</Button></>)}            
+            </Col>
           </Row>
          </Container>
         </Offcanvas.Body>

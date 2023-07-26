@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Carta from '../components/Carta';
 
 export default function Peliculas() {
-
+  
   return (
     <Container fluid>
     <div className='peliculas'>

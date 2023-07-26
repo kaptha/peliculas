@@ -26,18 +26,23 @@ const ShopProvider = ({ children }) => {
   const addProduct = (dato) => {
     // Obtener el carrito del almacenamiento local
     let carrito = JSON.parse(localStorage.getItem("cartShop")) || [];
-    console.log("aui", dato);
+    
     // Agregar el producto al carrito
     carrito.push(dato);
-
+    console.log("aui", carrito);
     // Guardar el carrito actualizado en el almacenamiento local
     setCartShop({ carrito });
     localStorage.setItem("cartShop", JSON.stringify(carrito));
-
+    
   }; 
+  const getProductos = () => {
+    let carrito = JSON.parse(localStorage.getItem("cartShop")) || [];
+    console.log('getProductos', carrito);
+    return carrito;
+  }
 
   return (
-    <ShopContext.Provider value={{ cartShop, addProduct, clearShop, deleteItem }}>
+    <ShopContext.Provider value={{ cartShop, addProduct, clearShop, deleteItem, getProductos }}>
       {children}
     </ShopContext.Provider>
   )

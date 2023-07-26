@@ -28,6 +28,7 @@ export default function Profile() {
        console.error('Error al obtener datos de usuario:', error);
      }
    };
+   
    console.log(datouser);
   return (
     <>

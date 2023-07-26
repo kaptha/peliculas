@@ -8,13 +8,12 @@ import { UserContext } from '../contexts/UserContext';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import Modal from 'react-bootstrap/Modal';
-//import el from '../images/eliminar.png';
-//import ed from '../images/boton-editar.png';
+import el from '../images/eliminar.png';
+import ed from '../images/boton-editar.png';
   
 function Address() {
   const { user } = useContext(UserContext);
-  const { id } = user || {};
-  
+  const { id } = user || {}; 
 
   //Modal crear
   const [show, setShow] = useState(false);
@@ -27,12 +26,13 @@ function Address() {
   /////Agregar direccion
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    console.log(id);
     try {
-      const response = await axios.post('http://localhost:5500/user', {
+      const response = await axios.post('http://localhost:5500/direccions/', {
         direccion,
         codigoPostal,
         ciudad,
+        usuario:id,
       });
       
       console.log(response.data);
@@ -90,7 +90,9 @@ function Address() {
               <td>{direccion.direccion}</td>
               <td>{direccion.codigoPostal}</td>
               <td>{direccion.ciudad}</td>
-              <td>Acciones</td>
+              <td><img src={el}></img>
+                  <img src={ed}></img>
+              </td>
             </tr>
           ))}
             
@@ -100,11 +102,12 @@ function Address() {
       </div> 
            
       <Modal show={show} onHide={handleClose}>
+      
         <Modal.Header closeButton>
           <Modal.Title>Direccion de Envio</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <FloatingLabel  controlId="floatingInput" label="Direccion" className="mb-3">
           <Form.Control type="text" placeholder="Direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)}/>
           </FloatingLabel>
@@ -114,18 +117,21 @@ function Address() {
           <FloatingLabel  controlId="floatingInput" label="Ciudad" className="mb-3">
           <Form.Control type="text" placeholder="Ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)}/>
           </FloatingLabel>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
           <Button className='redondo' variant="outline-secondary" onClick={handleClose}>
             Cerrar
           </Button>
-          <Button className='redondo' variant="outline-primary" onClick={handleClose} type="submit">
+          <Button className='redondo' variant="outline-primary" type="submit">
             Guardar
           </Button>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          
+          
         </Modal.Footer>
+        
       </Modal>
-               
+      
       
     </div>
     <Footer></Footer>
