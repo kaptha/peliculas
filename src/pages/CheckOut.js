@@ -18,7 +18,7 @@ function CheckOut() {
   const { user } = useContext(UserContext);
   const [key, setKey] = useState('home');
   const { id } = user || {};
-  const { cartShop, getProductos, deleteItem } = useContext(ShopContext);
+  const { getProductos, deleteItem } = useContext(ShopContext);
   const total = getProductos().reduce((sum, producto) => sum + producto.precio, 0);
   ////Obtener direccion del usuario 
   const [direcciones, setDirecciones] = useState([]);  
@@ -76,14 +76,14 @@ function CheckOut() {
       </Tab>
       <Tab eventKey="contact" title="Pago">
         <h4>Confirmacion del Producto</h4>
-        <PayPalScriptProvider options={{ "ATa0-qWXgxuH61YlWaLdr0goBUf4604TtnBhB3NXQ9mglxMvRwBhFQ3HZT9FyX1d2H0HPzZIPgB8ThBT": "test" }}>
-            <PayPalButtons
+        <PayPalScriptProvider options={{ "client-id": "test" }}>
+        <PayPalButtons
                 createOrder={(data, actions) => {
                     return actions.order.create({
                         purchase_units: [
                             {
                                 amount: {
-                                    value: {total},
+                                    value: "1.99",
                                 },
                             },
                         ],
@@ -92,7 +92,7 @@ function CheckOut() {
                 onApprove={(data, actions) => {
                     return actions.order.capture().then((details) => {
                         const name = details.payer.name.given_name;
-                        alert(`Transaccion completada por ${name}`);
+                        alert(`Transaction completed by ${name}`);
                     });
                 }}
             />
